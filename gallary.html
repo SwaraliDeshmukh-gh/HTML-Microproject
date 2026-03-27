@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Travel Gallery</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.3)),
+  url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e") center/cover fixed;
+  color: white;
+}
+
+/* NAVBAR */
+.navbar {
+  position: fixed;
+  width: 100%;
+  padding: 20px 10%;
+  display: flex;
+  justify-content: space-between;
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+}
+
+.logo {
+  font-family: 'Bebas Neue';
+  font-size: 28px;
+}
+
+/* HERO */
+.hero {
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.hero-title {
+  font-family: 'Bebas Neue';
+  font-size: clamp(60px, 10vw, 120px);
+  line-height: 1;
+  animation: fadeSlide 1.5s ease forwards;
+  transition: transform 0.4s ease, letter-spacing 0.4s ease;
+text-shadom: 0 0 20px rgba (76,201,240,0.3);
+}
+
+/* HOVER EFFECT */
+.hero-title:hover {
+  transform: scale(1.05);
+  letter-spacing: 5px;
+}
+
+.hero-title span {
+  background: linear-gradient(270deg, #4cc9f0, #ff69b4, #4cc9f0);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientMove 5s ease infinite;
+}
+
+/* GALLERY */
+.gallery {
+  padding: 80px 10%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+  gap: 20px;
+}
+
+.card {
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-title {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  font-family: 'Bebas Neue';
+  font-size: 22px;
+color: white;
+}
+
+/* POPUP */
+.popup {
+  position: fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background: rgba(0,0,0,0.9);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 90px;
+}
+
+.popup:target {
+  display: flex;
+}
+
+.popup img {
+  width: 400px;
+  margin: 10px;
+  border-radius: 8px;
+}
+
+.close {
+  position: absolute;
+  top:20px;
+  right:30px;
+  font-size:30px;
+  color: white;
+  text-decoration: none;
+}
+
+/* SECTION */
+.section {
+  padding: 100px 10%;
+  text-align: center;
+}
+
+.section h2 {
+  font-family: 'Bebas Neue';
+  font-size: 50px;
+  margin-bottom: 40px;
+}
+
+/* FEATURES */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+  gap: 20px;
+}
+
+.feature {
+  background: rgba(255,255,255,0.1);
+  padding: 40px;
+  border-radius: 10px;
+  backdrop-filter: blur(8px);
+  transition: 0.4s;
+}
+
+.feature:hover {
+  transform: scale(1.05);
+}
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% }
+  50% { background-position: 100% }
+  100% { background-position: 0% }
+}
+background: rgba(255,255,255,0.1);
+backdrop-filter: blur(12px);
+border: 1px solid rgba(255,255,255,0.2);
+box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+.card {
+  transition: 0.5s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 15px 40px rgba(76,201,240,0.4);
+}
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  padding: 2px;
+  background: linear-gradient(45deg, #4cc9f0, #ff69b4, #4cc9f0);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: 0.4s;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+body {
+  background-attachment: fixed;
+}
+.section {
+  animation: fadeUp 1.2s ease;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.popup img {
+  transition: 0.4s;
+}
+
+.popup img:hover {
+  transform: scale(1.1);
+}
+.section {
+  animation: fadeUp 1.2s ease;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+body {
+  background:
+    linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.3)),
+    url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e")
+    center/cover no-repeat fixed;
+}
+.navbar a{
+  text-decoration: none;
+  color:white;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="logo">TRAVEL</div>
+  <a href="index.html">Home</a>
+  <a href="aboutus/about.html">About Us</a>
+  <a href="index.html#tours">Tours</a>
+  <a href="gallary.html">Gallery</a>
+  <a href="review.html">Reviews</a>
+  <a href="index.html#contacts">Contacts</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <h1 class="hero-title"><span>EXPLORE</span> THE WORLD</h1>
+</section>
+
+<!-- GALLERY -->
+<div class="gallery">
+
+  <a href="#japan" class="card">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRx8eAOUIiOkr9jz5Qdbtbf0dTgVUjN45qOjw&s">
+    <div class="card-title">JAPAN</div>
+  </a>
+
+  <a href="#india" class="card">
+    <img src="https://htoindia.com/wp-content/uploads/2025/08/best-time-to-visit-india.webp">
+    <div class="card-title">INDIA</div>
+  </a>
+
+  <a href="#thailand" class="card">
+    <img src="https://media.istockphoto.com/id/1464421988/photo/a-woman-enjoys-the-sunset-view-to-the-famous-wat-arun-temple-in-bangkok.jpg?s=612x612&w=0&k=20&c=qQbsrXYRinIsQ605iGv6v4kN_5fhSl7TtlCRmcFOTvc=">
+    <div class="card-title">THAILAND</div>
+  </a>
+
+  <a href="#tokyo" class="card">
+    <img src="https://media.flytographer.com/uploads/2022/07/Tokyo-photo-spots-photographer-flytographer-8.jpeg">
+    <div class="card-title">TOKYO</div>
+  </a>
+
+</div>
+
+<!-- EXPLORE MORE -->
+<section class="section">
+  <h2>EXPLORE MORE</h2>
+  <div class="feature-grid">
+    <div class="feature">🌍 50+ Countries</div>
+    <div class="feature">✈️ Luxury Tours</div>
+    <div class="feature">🏝️ Beaches & Mountains</div>
+    <div class="feature">📸 Photography Spots</div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="section">
+  <h2>WHY TRAVEL WITH US?</h2>
+  <p>We create unforgettable journeys blending nature, culture and luxury travel experiences.</p>
+</section>
+
+<!-- POPUPS -->
+
+<div id="japan" class="popup">
+  <a href="#" class="close">✖</a>
+  <img src="https://www.luxurygold.com/lg/wp-content/uploads/2024/11/Large-Miyajima-Island-Hiroshima-Japan-in-spring-1132298347.jpg">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdwfqH-2mwaIHKH2bcvqUCy4m-q2PyiUgRhw&s">
+  <img src="https://hblimg.mmtcdn.com/content/hubble/img/Japan/mmt/activities/m_Japan_2-min_l_605_1000.jpg">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMmr8v8r6KXXtB5tM9duSJNV5NTrbB9RvPwg&s">
+  <img src="https://www.thebrokebackpacker.com/wp-content/uploads/2023/11/tbbteam-japan-tokyo-nikko-kegon-waterfall.jpg">
+</div>
+
+<div id="india" class="popup">
+  <a href="#" class="close">✖</a>
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOifMFxysKkxwT6fLHIzywN1CtmnRnH-XP-Q&s">
+  <img src="https://www.agoda.com/wp-content/uploads/2024/08/agra-india-featured-1244x700.jpg">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAqTIP3P5wiinCJzMQ4c6Fik24UpabsmMCJw&s">
+  <img src="https://www.travelandleisure.com/thmb/XlRexTZMUAx-7fra_Vlf8NNrWrs=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/TAL-udaipur-WHEREINDIA0124-e1a597d9a5704d06b3b71f63fc84e560.jpg">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFvWNfNd4vsW1jRRE6Ggt-hWvofDkFeTOymQ&s">
+</div>
+
+<div id="thailand" class="popup">
+  <a href="#" class="close">✖</a>
+  <img src="https://img.freepik.com/free-photo/beautiful-girl-standing-boat-looking-mountains-ratchaprapha-dam-khao-sok-national-park-surat-thani-province-thailand_335224-839.jpg?semt=ais_hybrid&w=740&q=80">
+  <img src="https://media.istockphoto.com/id/1477838822/photo/cheerful-woman-traveling-with-thai-taxi-boat-and-photographing-with-point-and-shoot-camera.jpg?s=612x612&w=0&k=20&c=8ra1tniwauTh-8UDuqtAest1biV1iOvTLuEe3VsBRGM=">
+  <img src="https://www.indianholiday.com/wordpress/wp-content/uploads/2025/06/Krabi.jpg">
+  <img src="https://res.cloudinary.com/rainforest-cruises/images/c_fill,g_auto/f_auto,q_auto/v1620250316/10-Best-Attractions-Thailand-Floating-Markets/10-Best-Attractions-Thailand-Floating-Markets.jpg">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBjUwQj14D-Xyw6s2pXGs1OIexximvxpKm1Q&s">
+</div>
+
+<div id="tokyo" class="popup">
+  <a href="#" class="close">✖</a>
+  <img src="https://static.gltjp.com/glt/data/article/21000/20318/20230607_140720_94fff4ae_w1920.webp">
+  <img src="https://www.travelcaffeine.com/wp-content/uploads/2025/01/sarah-bricker-shibuya-sky-observation-deck-scramble-crossing-skyscraper-tokyo-japan-280.jpg">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbG9SjiUk4eUhAuf0plDtuaThtIotIf-IFKA&s">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTU8HZrf_JerU7MO3QM0lBdLJwORhFPwTgHSA&s">
+  <img src="https://resources.matcha-jp.com/resize/720x2000/2024/02/05-165373.webp">
+</div>
+
+</body>
+</html>

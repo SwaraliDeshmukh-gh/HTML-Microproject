@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amazing India Pro Text FX</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+
+body{
+ background:#0f2027;
+ color:#fff;
+ overflow-x:hidden;
+}
+
+/* LOADER */
+#loader{position:fixed;width:100%;height:100%;background:#000;display:flex;align-items:center;justify-content:center;z-index:9999;}
+.loader-text{font-size:30px;color:#00c9a7;animation:pulse 1s infinite;}
+@keyframes pulse{0%{opacity:.3;}50%{opacity:1;}100%{opacity:.3;}}
+
+/* NAV */
+nav{position:fixed;width:100%;display:flex;justify-content:space-between;padding:15px 30px;background:rgba(0,0,0,0.5);backdrop-filter:blur(10px);z-index:1000;}
+nav h2{color:#00c9a7;}
+nav ul{display:flex;gap:20px;list-style:none;}
+nav li{cursor:pointer;transition:.3s;}
+nav li:hover{color:#92fe9d;}
+nav a{display:inline-block;text-decoration: none; color:white;}
+
+/* HERO */
+.hero{height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;background:url("https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1500&q=80") center/cover;}
+
+/* GRADIENT TEXT */
+.hero h1{
+ font-size:55px;
+ background:linear-gradient(90deg,#00c9a7,#92fe9d,#00c9a7);
+ background-size:200%;
+ -webkit-background-clip:text;
+ -webkit-text-fill-color:transparent;
+ animation:gradientText 4s linear infinite, textSlide 1s ease;
+ transition:.4s;
+}
+
+.hero h1:hover{
+ letter-spacing:4px;
+ transform:scale(1.05);
+}
+
+@keyframes gradientText{
+ 0%{background-position:0%;}
+ 100%{background-position:200%;}
+}
+
+@keyframes textSlide{
+ from{opacity:0;transform:translateY(40px);} 
+ to{opacity:1;transform:translateY(0);} }
+
+/* TYPEWRITER */
+.hero p{
+ margin-top:10px;
+ overflow:hidden;
+ white-space:nowrap;
+ border-right:2px solid #00c9a7;
+ width:0;
+ animation:typing 4s steps(30,end) forwards, blink .8s infinite;
+}
+
+@keyframes typing{from{width:0;}to{width:100%;}}
+@keyframes blink{50%{border-color:transparent;}}
+
+/* BUTTON */
+.hero button{margin-top:20px;padding:12px 30px;border:none;background:#00c9a7;border-radius:25px;cursor:pointer;transition:.3s;}
+.hero button:hover{transform:scale(1.1);box-shadow:0 0 20px #00c9a7;}
+
+/* SECTION */
+.section{padding:60px 30px;}
+
+/* GRID */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;}
+
+/* CARDS */
+.card{
+ background:#111;
+ border-radius:15px;
+ overflow:hidden;
+ transform:translateY(40px);
+ opacity:0;
+ animation:cardReveal 1s forwards;
+}
+.card:nth-child(1){animation-delay:.2s;}
+.card:nth-child(2){animation-delay:.4s;}
+.card:nth-child(3){animation-delay:.6s;}
+
+@keyframes cardReveal{to{transform:translateY(0);opacity:1;}}
+
+.card:hover{transform:translateY(-10px) scale(1.05);}
+.card img{width:100%;height:250px;object-fit:cover;transition:.4s;}
+.card:hover img{transform:scale(1.1);}
+
+/* PARALLAX */
+.parallax{height:300px;background:url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1500&q=80") center/cover fixed;display:flex;align-items:center;justify-content:center;}
+
+/* CONTACT */
+.contact{padding:50px;text-align:center;background:#111;}
+.contact input{padding:10px;margin:10px;border:none;border-radius:5px;}
+.contact button{padding:10px 20px;background:#00c9a7;border:none;}
+
+/* CURSOR */
+.cursor{position:fixed;width:15px;height:15px;border-radius:50%;background:#00c9a7;pointer-events:none;transform:translate(-50%,-50%);}
+
+</style>
+</head>
+
+<body>
+
+<div id="loader"><div class="loader-text">Loading...</div></div>
+<div class="cursor"></div>
+
+<nav>
+<h2>Amazing India</h2>
+<ul>
+<li><a href="../index.html">Home</a></li>
+<li><a href="../aboutus/about.html">About Us</a></li>
+<li><a href="../index.html#tours">Tours</a></li>
+<li><a href="../gallary.html">Gallery</a></li>
+<li><a href="../review.html">Reviews</a></li>
+<li><a href="../index.html#contacts">Contacts</a></li>
+</ul>
+</nav>
+
+<section class="hero">
+<div>
+<h1>INDIA</h1>
+<h2>every corner of INDIA holds a new adventure waiting to unlock</h2>
+<p>Where clouds touch the earth</p>
+<button>Explore</button>
+</div>
+</section>
+
+<section class="section">
+<h2>Beautiful Places</h2>
+<div class="grid">
+<div class="card"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80"></div>
+<div class="card"><img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=80"></div>
+<div class="card"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80"></div>
+</div>
+</section>
+
+<section class="parallax">
+<h2>Feel the Nature</h2>
+</section>
+
+<section class="contact">
+<h2>Stay Connected</h2>
+<input placeholder="Name">
+<input placeholder="Email">
+<button>Subscribe</button>
+</section>
+
+<script>
+window.onload=()=>{document.getElementById('loader').style.display='none';}
+const cursor=document.querySelector('.cursor');
+document.addEventListener('mousemove',e=>{
+ cursor.style.left=e.clientX+'px';
+ cursor.style.top=e.clientY+'px';
+});
+</script>
+
+</body>
+</html>

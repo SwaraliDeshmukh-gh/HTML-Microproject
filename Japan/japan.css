@@ -1,0 +1,998 @@
+:root {
+    --bg-black: #080808;
+    --text-white: #ffffff;
+    --text-muted: #aaaaaa;
+    --accent-white: rgba(255, 255, 255, 0.1);
+    --tokyo-red:#ff4d00;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-black);
+    color: var(--text-white);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+}
+
+/* --- Hero Section --- */
+ .hero {
+    height: 100vh;
+    position: relative;
+    padding: 1% 8%;
+    overflow: hidden; /* Prevents the zoomed image from spilling out */
+    background-color: var(--bg-black); /* Fallback color */
+    z-index: 1;
+}
+
+/* Create a separate layer for the background image */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0,0,0,0.3), var(--bg-black)), 
+                url('japan_hero.avif');
+    background-size: cover;
+    background-position: center;
+    z-index: -1; /* Puts it behind your text/cards */
+    
+    /* THE ANIMATION */
+    animation: slowZoom 15s ease-out forwards;
+}
+
+@keyframes slowZoom {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.12); /* Subtle 15% zoom */
+    }
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 22px;
+    background-color: rgba(244, 242, 242, 0.2);
+    padding:10px 15px;
+    position:sticky;
+    background-color: rgba(244, 242, 242, 0.1);backdrop-filter: blur(3px);
+}
+
+.nav-logo {
+    font-weight: 800;
+    letter-spacing: 2px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    /* This creates the faded reflection effect below the text */
+    -webkit-webkit-box-reflect: below -5px linear-gradient(transparent, rgba(255, 255, 255, 0.1));
+}
+
+.nav-logo i {
+    transition: transform 0.4s ease;
+}
+
+/* --- Logo Reflection & Glow --- */
+.nav-logo {
+    position: relative;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    /* This creates the faded reflection effect below the text */
+    -webkit-webkit-box-reflect: below -5px linear-gradient(transparent, rgba(255, 255, 255, 0.1));
+}
+
+.nav-logo i {
+    transition: transform 0.4s ease;
+}
+
+.nav-logo:hover i {
+    transform: rotate(15px); /* Slight tilt to the globe on hover */
+}
+
+.nav-logo:hover {
+    color: var(--tokyo-red); /* Deep Tokyo Orange/Red */
+    /* drop-shadow creates a more realistic "neon" glow than text-shadow */
+    filter: drop-shadow(0 0 8px #fbc1aa) ;
+    transform: translateY(-2px) scale(1.02);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    transition: all ease 0.3s;
+    padding: 8px 16px; 
+    border-radius: 50px;
+}
+
+.nav-links a:hover { color: #ff7f51;transform: translateY(-1px);
+background-color: rgba(244, 242, 242, 0);backdrop-filter: blur(0px);
+}
+.nav-links li:hover{transform: scale(1.05);}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+    padding: 8px 25px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden; /* Important for the shimmer effect */
+}
+
+.btn-outline:hover {
+    background-color: #fff;
+    color: #000;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+}
+
+/* The Shimmer Effect */
+.btn-outline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    transition: all 0.6s;
+}
+
+.btn-outline:hover::before {
+    left: 100%;
+}
+
+.hero-bg-text {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-60%, -40%);
+    font-size: 15vw;
+    font-weight: 800;
+    opacity: 0.15;
+    letter-spacing: 20px;
+    pointer-events: none;
+    z-index: 0; /* Ensure it stays above the ::before but below the content */
+    
+    /* Apply the zoom animation */
+    animation: textZoom 15s ease-out forwards;
+}
+
+@keyframes textZoom {
+    from {
+        /* Must include the translate values so it stays centered! */
+        transform: translate(-60%, -40%) scale(1.1);
+    }
+    to {
+        transform: translate(-60%, -40%) scale(1); /* Zooms slightly more than the bg */
+    }
+}
+
+.hero-content {
+    position: absolute;
+    bottom: 10%;
+    width: 84%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+/* 1. Define the entrance animation */
+@keyframes cardEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.hero-cards {
+    display: flex;
+    gap: 15px;
+}
+
+.h-card {
+    width: 107px;
+    height: 170px;
+    border-radius: 8px;
+    background-size: cover;
+    background-position: center;
+    padding: 10px;
+    display: flex;
+    align-items: flex-end;
+    font-size: 0.85rem;
+    font-weight: 700;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+    /* ... keep your existing styles ... */
+    animation: cardEntrance 0.8s ease-out backwards;
+}
+/* 2. Stagger the timing for each card */
+.h-card:nth-child(1) { animation-delay: 0.5s; }
+.h-card:nth-child(2) { animation-delay: 0.7s; }
+.h-card:nth-child(3) { animation-delay: 0.9s; }
+.h-card:nth-child(4) { animation-delay: 1.1s; }
+.h-card:nth-child(5) { animation-delay: 1.3s; }
+
+
+.h-card {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(206, 66, 87,0.3)/* Subtle border */
+}
+
+.h-card span {
+    z-index: 2;
+    transition: transform 0.5s ease, text-shadow 0.5s ease;
+}
+
+.h-card:hover {
+    transform: scale(1.15) translateY(-10px); /* Lift it up slightly */
+    box-shadow: 0 15px 30px rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Make the text inside "float" up and glow on hover */
+.h-card:hover span {
+    transform: translateY(-5px);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+/* Add a dark overlay that fades in on hover to make text readable */
+.h-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.h-card:hover::after {
+    opacity: 0.9;
+}
+
+.btn-hero-book {
+    position: relative;
+    background: #fff;
+    color: #000;
+    padding: 15px 100px;
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 2px; /* Sharper corners look more premium for Japan themes */
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: 0 0 0 0 rgba(255, 77, 0, 0.7);
+}
+
+/* The Animated Border Flare */
+.btn-hero-book::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: -100%;
+    /* A sharp light streak */
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+    transition: none;
+}
+
+/* The Hover Background (Tokyo Red) */
+.btn-hero-book::after {
+    content: 'READY?';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--tokyo-red);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(100%) skewY(5deg); /* Skewed entrance for style */
+    transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.btn-hero-book:hover {
+    transform: translateY(-8px) scale(1.05);
+    background: #000;
+    color: #fff;
+    box-shadow: 0 20px 40px rgba(255, 77, 0, 0.4);
+}
+
+/* On hover, the Flare zips across and the Red background slides up */
+.btn-hero-book:hover::before {
+    left: 100%;
+    transition: all 0.6s ease;
+}
+
+.btn-hero-book:hover::after {
+    transform: translateY(0) skewY(0deg);
+}
+
+.btn-hero-book:hover .btn-text {
+    transform: translateY(-150%) rotateX(90deg);
+    opacity: 0;
+}
+
+.btn-text {
+    display: inline-block;
+    transition: all 0.5s ease;
+}
+
+/* Floating Animation while idle */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0px); }
+}
+
+.btn-hero-book {
+    animation: float 3s ease-in-out infinite;
+}
+
+ .social-sidebar {
+    position: absolute;
+    right: 3%;
+    top: 27%;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    perspective: 1000px; /* Adds 3D depth */
+}
+
+.social-sidebar a {
+    text-decoration: none;
+    opacity: 0;
+    /* Start: Tiny, rotated, and far right */
+    transform: translateX(100px) scale(0) rotate(90deg);
+    animation: cyberSnap 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Stagger with very tight timing for a "Zipper" effect */
+.social-sidebar a:nth-child(1) { animation-delay: 1.0s; }
+.social-sidebar a:nth-child(2) { animation-delay: 1.1s; }
+.social-sidebar a:nth-child(3) { animation-delay: 1.2s; }
+
+@keyframes cyberSnap {
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1) rotate(0deg);
+    }
+}
+
+.social-sidebar i {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(8, 8, 8, 0.5);
+    backdrop-filter: blur(5px);
+    color: #fff;
+    font-size: 1.4rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+/* The Neon Glitch Hover */
+.social-sidebar a:hover i {
+    border-color: #ce4257;
+    color: #ce4257;
+    box-shadow: -5px 0 15px rgba(255, 77, 0, 0.3), 
+                 5px 0 15px rgba(0, 255, 255, 0.2); /* Dual-tone glow */
+    transform: translateX(-10px) rotate(-5deg);
+}
+
+/* A "Scanline" that passes through the icon on hover */
+.social-sidebar a:hover i::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 2px;
+    background: #fff;
+    box-shadow: 0 0 10px #fff;
+    animation: scanline 0.4s linear;
+}
+
+@keyframes scanline {
+    0% { top: 0; opacity: 1;width:0; }
+    50%{width:100%;}
+    100% { top: 100%; opacity: 0; width:0%;}
+}
+/* --- About & Timeline --- */
+.section-divider {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 60px 8% 90px;
+}
+
+.section-divider h1{
+    letter-spacing: 2px;
+    font-size: 50px;
+    font-weight: 400;
+    transform: scaleY(1.01);
+    animation: revealText 1.5s ease-out forwards;
+}
+@keyframes revealText {
+    from {
+        opacity: 0;
+        letter-spacing: 10px;
+    }
+    to {
+        opacity: 1;
+        letter-spacing: 5px;
+    }
+}
+
+ /* Make the lines glow like neon */
+.line {
+    flex-grow: 1;
+    height: 1px;
+    background: #333; /* Your current color */
+}
+
+
+.about-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0 8% 100px;
+}
+
+.about-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.about-info p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    max-width: 450px;
+    animation:Slidein 3s 2s 1 ease backwards;
+}
+@keyframes Slidein{
+    0%{
+        transform: translateY(100px);
+        opacity:0;
+    }
+    100%{
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+.muted-text { color: var(--text-muted); font-size: 0.95rem; margin-top: 100px !important; }
+
+/* --- Timeline Container --- */
+
+ .itinerary-timeline {
+    position: relative;
+    /* We remove the solid border-left and use a background-image line instead */
+    border-left: none; 
+    margin: 40px 0 0 200px;
+    padding-left: 0;
+    min-height: 480px;
+}
+
+/* This creates a glowing, animated line */
+.itinerary-timeline::before {
+    content: '';
+    position: absolute;
+    left: -1px;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    /* Gradient from Tokyo Red to a dark gray */
+    background: linear-gradient(to bottom, #ff4d00, #333);
+    /* This makes it "wipe" down when the page loads */
+    animation: lineGrow 2s ease-out;
+}
+
+@keyframes lineGrow {
+    from { height: 0; }
+    to { height: 100%; }
+}
+
+/* --- Individual Step --- */
+.timeline-step {
+    position: relative;
+    margin-bottom: 150px; /* Improved spacing between cities */
+    display: flex;
+    align-items: center;
+}
+
+/* --- Perfectly Aligned Dots --- */
+
+ .step-dot {
+    position: absolute;
+    left: -6.5px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    background: var(--tokyo-red); /* Change to Tokyo Red */
+    border-radius: 50%;
+    z-index: 2;
+    /* Adds a breathing glow effect */
+    box-shadow: 0 0 0 rgba(255, 77, 0, 0.4);
+    animation: dotPulse 2s infinite;
+}
+
+@keyframes dotPulse {
+    0% { box-shadow: 0 0 0 0 rgba(255, 77, 0, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(255, 77, 0, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 77, 0, 0); }
+}
+
+.step-label {
+    position: absolute;
+    white-space: nowrap;
+    color: #fff;
+    opacity: 0; /* Start hidden */
+    transform: translateX(-20px);
+    animation: labelReveal 1s ease-out forwards;
+}
+
+/* Stagger them so they appear as you scroll down (simulated) */
+.timeline-step:nth-child(1) .step-label { animation-delay: 0.5s; }
+.timeline-step:nth-child(2) .step-label { animation-delay: 1s; }
+.timeline-step:nth-child(3) .step-label { animation-delay: 1.5s; }
+
+@keyframes labelReveal {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+/* 1st and 3rd labels on the Left */
+.timeline-step:nth-child(1) .step-label,
+.timeline-step:nth-child(3) .step-label {
+    right:480px; /* Position to the left of the line */
+    text-align: right;
+}
+
+/* 2nd label on the Right */
+.timeline-step:nth-child(2) .step-label {
+    left: 30px; /* Position to the right of the line */
+    text-align: left;
+}
+
+ /* 1. The Dot Glow & Growth */
+.step-dot:hover {
+    background: #fff !important; /* Golden White center */
+    transform: translateY(-50%) scale(1.7); /* Gets bigger */
+    box-shadow: 0 0 15px 5px rgba(255, 215, 0, 0.8), 
+                0 0 30px 10px rgba(255, 255, 255, 0.5) !important;/* Golden white glow */
+    cursor: pointer;
+    z-index: 100;
+}
+
+/* 2. Make the Text (Label) bigger when Dot is hovered */
+.step-dot:hover ~ .step-label {
+    opacity: 1 !important;
+    transform: scale(1.02) translateY(-10px) !important; /* Grows and shifts slightly */
+    filter: brightness(1.2) !important;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* 3. Make the Images bigger when Dot is hovered */
+.step-dot:hover ~ .step-images img {
+    opacity: 1 !important;
+    filter: saturate(1) brightness(1) blur(0px) !important;
+    transform: scale(1.3) translateY(-10px); /* Images pop up and get big */
+    z-index: 50;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border:1px solid white;
+    box-shadow: 0 0 10px 1px rgba(255, 215, 0, 0.8), 
+                0 0 20px 3px rgba(255, 255, 255, 0.5);
+}
+
+/* 4. Extra: Specific "Fan-out" so images don't overlap too much when big */
+.step-dot:hover ~ .step-images img:nth-child(1) { margin-left: -20px; rotate: -5deg; }
+.step-dot:hover ~ .step-images img:nth-child(2) { margin-left: 20px; rotate: 5deg; }
+.step-images img {
+    position: absolute;
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    
+    /* Instead of B&W, we use low saturation and a slight blur */
+    filter: saturate(0.9) brightness(1) sepia(0.1); 
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.step-images img:hover {
+    /* Pops into vivid color */
+    filter: saturate(1.2) brightness(1.1) sepia(0);
+    transform: scale(1.3) rotate(-3deg) translateY(-15px);
+    z-index: 10;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+}
+
+/* Step 1: Images floating further left of the label */
+.timeline-step:nth-child(1) .step-images img:nth-child(1) { left: -240px; top: 20px; }
+.timeline-step:nth-child(1) .step-images img:nth-child(2) { left: -180px; top: 80px; width: 90px; height: 90px; }
+.timeline-step:nth-child(1) .step-images img:nth-child(3) { left: 130px; top: -20px; width: 85px; height: 85px; }
+/* Step 2: Images floating right */
+.timeline-step:nth-child(2) .step-images img:nth-child(1) {left: 90px; top: 80px; width: 90px; height: 90px;}
+.timeline-step:nth-child(2) .step-images img:nth-child(2) {   left: 130px; top: 30px; }
+
+/* Step 3: Images floating left */
+.timeline-step:nth-child(3) .step-images img:nth-child(1) { left: -240px; top: 40px; }
+
+/* --- Included Cards --- */
+.included-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 50px;
+    padding: 0 13% 100px;
+}
+
+/* 1. Define the movement */
+@keyframes cardEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(100px); /* Start lower */
+        filter: blur(5px); /* Start blurry for a soft look */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+.inc-card:nth-child(1) { animation-delay: 0.1s; }
+.inc-card:nth-child(2) { animation-delay: 0.25s; }
+.inc-card:nth-child(3) { animation-delay: 0.4s; }
+.inc-card:nth-child(4) { animation-delay: 0.55s; }
+.inc-card {
+    background-color: transparent;
+    border: 3px solid #686666;
+    padding: 20px 20px;
+    border-radius: 12px;
+    min-height: 220px;
+    animation: cardEntrance 2s 1 ease backwards;
+}
+
+ .inc-card:hover {
+    background-color: rgba(254, 252, 252, 0.06);
+    backdrop-filter: blur(5px);
+    border-color: rgba(255, 255, 255, 0.5); /* Brightens the border */
+    transform: translateY(-8px) scale(1.02); /* Lifts and grows slightly */
+    box-shadow: 0 15px 30px rgba(101, 101, 101, 0.4);
+}
+.inc-card:hover p{color:rgb(226, 223, 223);}
+.inc-card h3{
+    display: inline-block;
+    margin-left: 10px;
+}
+.inc-card p{
+    color:rgb(172, 169, 169);
+}
+.inc-card .icon { font-size: 2rem; margin-bottom: 15px; display: inline-block;transition: transform 0.4s ease;}
+.inc-card:hover .icon {
+    transform:scale(1.1) rotate(-360deg); /* Pops out and tilts */
+}
+
+/* --- CTA Section --- */
+.footer-section{
+    background: linear-gradient(var(--bg-black) , rgba(0,0,0,0.6)), 
+    url('Japan_footer.webp');
+    background-size: cover;
+    border: none;
+    padding-bottom: 30px;
+    position: relative;
+}
+.firstslide{
+    display: inline-block;
+    animation:slideright 2s 1s 1 ease backwards;
+}
+.secondslide{
+    display: inline-block;
+    animation:slideright 2s 3s 1 ease backwards;
+}
+@keyframes slideright{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity:1;
+    }
+}
+.cta-section {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 0 8%;
+}
+
+.glass-form-container {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(15px);
+    padding: 50px;
+    border-radius: 20px;
+    width: 500px;
+}
+
+.glass-form-container h3{
+    font-size: 30px;
+    font-weight: 400;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    line-height: 35px;
+    letter-spacing: 2px;
+}
+
+.glass-form-container p{
+    margin-top: 7%;
+    font-weight: 100;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    animation:slideright 1s 4s 1 ease backwards;
+}
+.glass-form-container input, .glass-form-container textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    /* border-bottom: 1px solid #666; */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.4s ease;
+    color: #fff;
+    padding: 7px 0;
+    margin: 10px 0;
+    outline: none;
+    animation:slideright 1s 4s 1 ease backwards;
+}
+
+.glass-form-container input:focus,textarea:focus{
+    /* border-bottom: 2px solid #cbc0c0; */
+    border-bottom: 1px solid #ff4d00;
+    background: rgba(255, 255, 255, 0.05);
+    padding-left: 10px; /* Subtle "shift" to show focus */
+}
+
+.glass-form-container input:focus::-webkit-input-placeholder,textarea:focus::-webkit-input-placeholder{
+    color:#cbc0c0;
+}
+
+.btn-send {
+    width: 100%;
+    padding: 15px;
+    background: #fff;
+    border: none;
+    font-size: 18px;
+    letter-spacing: 1px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 20px;
+    border-radius: 5px;
+    animation:slideright 1s 4s 1 ease backwards;
+}
+
+.btn-send:hover{
+    transform: scale(1.02);
+    box-shadow: 0px 0px 8px #fff;
+}
+
+ .social-sidebar2 {
+    position: absolute;
+    right: 43%;
+    top: 83%;
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+    perspective: 1000px; /* Adds 3D depth */
+}
+
+.social-sidebar2 a {
+    text-decoration: none;
+    opacity: 0;
+    /* Start: Tiny, rotated, and far right */
+    transform: translateY(100px) scale(0) rotate(90deg);
+    animation: cyberSnap 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Stagger with very tight timing for a "Zipper" effect */
+.social-sidebar2 a:nth-child(1) { animation-delay: 1.0s; }
+.social-sidebar2 a:nth-child(2) { animation-delay: 1.1s; }
+.social-sidebar2 a:nth-child(3) { animation-delay: 1.2s; }
+
+@keyframes cyberSnap {
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotate(0deg);
+    }
+}
+
+.social-sidebar2 i {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(8, 8, 8, 0.5);
+    backdrop-filter: blur(5px);
+    color: #fff;
+    font-size: 1.4rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+/* The Neon Glitch Hover */
+.social-sidebar2 a:hover i {
+    border-color: #ce4257;
+    color: #ce4257;
+    box-shadow: -5px 0 15px rgba(255, 77, 0, 0.3), 
+                 5px 0 15px rgba(0, 255, 255, 0.2); /* Dual-tone glow */
+    transform: translateY(-10px) rotate(-5deg);
+}
+
+/* A "Scanline" that passes through the icon on hover */
+.social-sidebar2 a:hover i::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 2px;
+    background: #fff;
+    box-shadow: 0 0 10px #fff;
+    animation: scanline 0.4s linear;
+}
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: rgba(244, 242, 242, 0.2);
+    border-radius: 22px;
+    margin-left:8%;
+    margin-right: 8%;
+    background-color: rgba(244, 242, 242, 0.1);
+    backdrop-filter: blur(3px);
+}
+.gallery-section { padding: 70px 0; background:var(--bg-black); }
+
+.css-slider {
+    position: relative;
+    width: 85%;
+    max-width: 1000px;
+    height: 500px;
+    margin: 20px auto;
+    overflow: hidden;
+    border-radius: 20px;
+    animation: fade 4s 2s 1 ease-in-out backwards;
+}
+.css-slider:hover{
+    border:2px solid #ff7f51;
+    box-shadow: 0 0 50px 1px #ff7f51;
+}
+@keyframes fade{
+    0%{
+        opacity:0;
+    }
+    100%{
+        opacity:1;
+    }
+}
+.css-slider input { display: none; }
+
+.slides-container {
+    display: flex;
+    width: 700%; /* 7 images */
+    height: 100%;
+    transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.slide { width: 14.2857%; } /* 100 / 7 */
+.slide img { width: 100%; height: 100%; object-fit: cover; }
+
+/* --- THE 7-IMAGE SLIDER LOGIC --- */
+#s1:checked ~ .slides-container { transform: translateX(0%); }
+#s2:checked ~ .slides-container { transform: translateX(-14.2857%); }
+#s3:checked ~ .slides-container { transform: translateX(-28.5714%); }
+#s4:checked ~ .slides-container { transform: translateX(-42.8571%); }
+#s5:checked ~ .slides-container { transform: translateX(-57.1428%); }
+#s6:checked ~ .slides-container { transform: translateX(-71.4285%); }
+#s7:checked ~ .slides-container { transform: translateX(-85.7142%); }
+
+/* --- ARROW BUTTONS --- */
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    display: none; /* Hidden by default */
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    z-index: 15;
+    transition: 0.3s;
+}
+
+.arrow:hover { background: #ff4d00; border-color: #ff4d00; }
+.prev { left: 20px; }
+.next { right: 20px; }
+
+/* Arrow Visibility Logic: Only show the arrows corresponding to the checked radio */
+#s1:checked ~ .arrows .n1, #s2:checked ~ .arrows .n2, #s3:checked ~ .arrows .n3,
+#s4:checked ~ .arrows .n4, #s5:checked ~ .arrows .n5, #s6:checked ~ .arrows .n6,
+#s7:checked ~ .arrows .n7 { display: flex; }
+
+/* --- DOT CONTROLS --- */
+.controls {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    z-index: 10;
+}
+
+.btn {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+/* Active Dot Styling */
+#s1:checked ~ .controls .b1, #s2:checked ~ .controls .b2, 
+#s3:checked ~ .controls .b3, #s4:checked ~ .controls .b4,
+#s5:checked ~ .controls .b5, #s6:checked ~ .controls .b6,
+#s7:checked ~ .controls .b7 {
+    background: #ff4d00;
+    width: 30px;
+    border-radius: 10px;
+}

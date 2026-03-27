@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Travel Reviews</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* 🌊 ANIMATED BACKGROUND */
+body {
+    background: linear-gradient(-45deg, #1e3c72, #2a5298, #43cea2, #185a9d);
+    background-size: 400% 400%;
+    animation: gradientBG 10s ease infinite;
+    padding: 20px;
+}
+
+/* BACKGROUND ANIMATION */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* HEADER */
+header {
+    text-align: center;
+    color: white;
+    margin-bottom: 20px;
+    animation: fadeIn 2s ease;
+}
+
+header h1 {
+    font-size: 42px;
+    animation: float 3s ease-in-out infinite, glow 3s infinite;
+}
+
+header p {
+    font-size: 18px;
+    opacity: 0.9;
+}
+
+/* FLOAT */
+@keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* GLOW */
+@keyframes glow {
+    0% { text-shadow: 0 0 5px #fff; }
+    50% { text-shadow: 0 0 20px #ffd700; }
+    100% { text-shadow: 0 0 5px #fff; }
+}
+
+/* QUOTES */
+.quote-section {
+    text-align: center;
+    color: white;
+    margin-bottom: 25px;
+    animation: fadeIn 3s ease;
+}
+
+.quote-section p {
+    font-size: 17px;
+    font-style: italic;
+    margin: 5px 0;
+    transition: 0.3s;
+}
+
+.quote-section p:hover {
+    color: #ffd700;
+    letter-spacing: 1px;
+}
+
+/* FORM (GLASS EFFECT) */
+.form-container {
+    backdrop-filter: blur(15px);
+    background: rgba(255,255,255,0.15);
+    padding: 25px;
+    border-radius: 20px;
+    max-width: 500px;
+    margin: auto;
+    color: white;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* INPUTS */
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+}
+
+/* STAR RATING */
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+}
+
+.rating input {
+    display: none;
+}
+
+.rating label {
+    font-size: 28px;
+    color: #ccc;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.rating label:hover,
+.rating label:hover ~ label,
+.rating input:checked ~ label {
+    color: gold;
+    transform: scale(1.3);
+}
+
+/* BUTTON */
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background: linear-gradient(45deg, #ff6600, #ffcc00);
+    color: white;
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #ffcc00;
+}
+
+/* REVIEW CARDS */
+.review-container {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+/* CARD */
+.review-card {
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 20px;
+    color: white;
+    transition: 0.4s;
+}
+
+/* 3D HOVER */
+.review-card:hover {
+    transform: scale(1.05) rotateY(10deg);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+/* STARS */
+.stars {
+    color: gold;
+    margin: 5px 0;
+    animation: glow 2s infinite alternate;
+}
+
+/* FADE */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+</style>
+</head>
+
+<body>
+    <nav style="display: flex; justify-content: space-around; align-items: center;list-style: none;padding:30px;margin-bottom: 20px;">
+        <li><a style="color: white; text-decoration: none;" href="../index.html">Home</a></li>
+        <li><a style="color: white; text-decoration: none;" href="../aboutus/about.html">About Us</a></li>
+        <li><a style="color: white; text-decoration: none;" href="../index.html#tours">Tours</a></li>
+        <li><a style="color: white; text-decoration: none;" href="../gallary.html">Gallery</a></li>
+        <li><a style="color: white; text-decoration: none;" href="#">Reviews</a></li>
+        <li><a style="color: white; text-decoration: none;" href="../index.html#contacts">Contacts</a></li>
+    </nav>
+
+<header>
+    <h1>🌍 Travel Reviews</h1>
+    <p>Share your travel experience</p>
+</header>
+
+<p style="text-align:center; color:white; margin-bottom:15px;">
+    Discover. Explore. Experience. ✈️
+</p>
+
+<!-- QUOTES -->
+<div class="quote-section">
+    <p>"Travel is the only thing you buy that makes you richer."</p>
+    <p>"Collect moments, not things."</p>
+    <p>"Life is short and the world is wide."</p>
+</div>
+
+<!-- FORM -->
+<div class="form-container">
+    <h2 style="text-align:center;">Submit Your Review</h2>
+
+    <input type="text" placeholder="Your Name">
+    <input type="text" placeholder="Destination">
+
+    <div class="rating">
+        <input type="radio" name="star" id="star5"><label for="star5">★</label>
+        <input type="radio" name="star" id="star4"><label for="star4">★</label>
+        <input type="radio" name="star" id="star3"><label for="star3">★</label>
+        <input type="radio" name="star" id="star2"><label for="star2">★</label>
+        <input type="radio" name="star" id="star1"><label for="star1">★</label>
+    </div>
+
+    <textarea placeholder="Write your review..."></textarea>
+
+    <button onclick="alert('Thank You For Your Response!')">Submit Review</button>
+</div>
+
+<!-- REVIEWS -->
+<div class="review-container">
+
+    <div class="review-card">
+        <h3>Shrushti</h3>
+        <small>Goa</small>
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <p>Goa was an unforgettable experience! Beaches, sunsets and nightlife were amazing.</p>
+    </div>
+
+    <div class="review-card">
+        <h3>Saurabh</h3>
+        <small>Manali</small>
+        <div class="stars">⭐⭐⭐⭐</div>
+        <p>Snow-covered mountains and fresh air made my trip peaceful and refreshing.</p>
+    </div>
+
+    <div class="review-card">
+        <h3>Priya</h3>
+        <small>Jaipur</small>
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <p>Royal palaces and culture of Jaipur were stunning and full of history.</p>
+    </div>
+
+    <div class="review-card">
+        <h3>Rahul</h3>
+        <small>Kerala</small>
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <p>Backwaters and greenery made Kerala a perfect relaxing destination.</p>
+    </div>
+
+</div>
+
+</body>
+</html>
