@@ -4,7 +4,11 @@
     --pad: 10%;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
 
 body {
     background-color: var(--bg-black);
@@ -69,7 +73,7 @@ body {
     width: 100%; /* Fully visible by default */
     border-right: 4px solid transparent; /* Cursor hidden by default */
     animation: 
-        typeFromHalf 5s steps(20, end) backwards alternate, 
+        typeFromHalf 5s steps(20, end) backwards, 
         blink-cursor 0.85s step-end infinite;
 }
 
@@ -111,7 +115,7 @@ body {
     position:relative;
 }
 .navbar::after{
-    content: "";
+    content: '';
     border-bottom: 1px solid rgba(255,255,255,0.7);
     width:80%;
     position:absolute;
@@ -251,7 +255,10 @@ body {
 }
 .hero-body 
 { 
-    flex: 1; display: flex; align-items: center; padding: 0 var(--pad); 
+    flex: 1; 
+    display: flex; 
+    align-items: center; 
+    padding: 0 var(--pad); 
 }
 
 /* EVENLY SPACED FEATURE CARDS */
@@ -291,12 +298,12 @@ body {
 .feature-item:nth-child(1) { animation-delay: 0.3s; }
 .feature-item:nth-child(2) { animation-delay: 0.5s; }
 .feature-item:nth-child(3) { animation-delay: 0.7s; }
-/* .f-icon { color: var(--accent); margin-bottom: 10px; font-size: 18px; } */
+
 /* --- THE ICON DEFAULT STATE --- */
 .location-icon {
     height: 50px;
     width: auto;
-    transition: transform 0.3s ease; /* Smooth return when mouse leaves */
+    transition: transform 0.3s ease; 
     animation: floatingIcon 4s ease-in-out infinite;
 }
 
@@ -321,57 +328,7 @@ body {
     color: #999; 
     line-height: 1.8; 
 }
-/* --- FLOATING ICON SETUP --- */
-.floating-container {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-right: 20px;
-    height: 70px; /* Gives space for the movement */
-}
 
-.floating-container img {
-    z-index: 2;
-    /* This triggers the drift */
-    animation: drift 2.5s ease-in-out infinite;
-}
-
-/* The "Ground" Shadow */
-.floating-shadow {
-    width: 25px;
-    height: 5px;
-    background: rgba(0, 0, 0, 0.4); /* Dark shadow */
-    border-radius: 50%;
-    filter: blur(3px);
-    margin-top: 10px;
-    /* This triggers the pulse */
-    animation: shadowPulse 2.5s ease-in-out infinite;
-}
-
-/* --- THE ANIMATIONS --- */
-
-/* The Pin drifting up and down */
-@keyframes drift {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-12px); /* Lifts up */
-    }
-}
-
-/* The Shadow responding to the height */
-@keyframes shadowPulse {
-    0%, 100% {
-        transform: scale(1);
-        opacity: 0.4;
-    }
-    50% {
-        transform: scale(0.6); /* Shrinks as pin goes higher */
-        opacity: 0.1; /* Gets lighter as pin goes higher */
-    }
-}
 .more-link 
 { 
     font-family: 'Times New Roman', Times, serif;
@@ -389,8 +346,20 @@ body {
 }
 
 /* --- TOURS SECTION --- */
-.tours-section { padding: 100px var(--pad); background: #000; position: relative; }
-.accent-title { color: var(--accent); text-align: center; font-family: 'Montserrat'; letter-spacing: 4px; font-size: 28px; animation: titlefade 2.5s 1s 1 ease-in-out backwards,lightpulse 2s 3s 1 ease-in-out backwards;}
+.tours-section { 
+    padding: 100px var(--pad); 
+    background: var(--bg-black); 
+    position: relative; 
+    overflow: hidden;
+}
+.accent-title { 
+    color: var(--accent); 
+    text-align: center; 
+    font-family: 'Montserrat'; 
+    letter-spacing: 4px; 
+    font-size: 28px; 
+    animation: titlefade 2.5s 1s 1 ease-in-out backwards,lightpulse 2s 3s 1 ease-in-out backwards;
+}
 
  @keyframes titlefade{
     0%{ 
@@ -399,7 +368,7 @@ body {
     }
     100%{
         opacity:1;
-        transform: translateY(0px);
+        transform: translateY(0px) scale(1);
     }
  }
  @keyframes lightpulse{
@@ -413,13 +382,20 @@ body {
         text-shadow: 0 0 0px var(--accent);
     }
  }
-.subtitle { color: #9c9b9b; text-align: center; font-size: 12px; margin: 10px 0 80px; animation: titlefade 2.5s 2s 1 ease-in-out backwards}
+.subtitle { 
+    color: #9c9b9b; 
+    text-align: center; 
+    font-size: 12px; 
+    margin: 10px 0 80px; 
+    animation: titlefade 2.5s 2s 1 ease-in-out backwards
+}
 
 .tours-grid 
 { 
     perspective: 1200px;
     display: flex; 
     gap: 30px; 
+    transform-style: preserve-3d;
 }
 .tour-card {
     width:300px;
@@ -429,8 +405,7 @@ body {
     display: flex; 
     align-items: flex-end; 
     padding: 25px; 
-
-   animation: tourpop 2s cubic-bezier(0.25, 1, 0.5, 1) backwards;
+    animation: tourpop 2s cubic-bezier(0.25, 1, 0.5, 1) backwards;
     opacity: 1; /* Start hidden */
     
     /* 3. Smoother transition for hover */
@@ -441,8 +416,7 @@ body {
 @keyframes tourpop{
     0%{
         opacity: 0;
-    /* Start lower, tilted back, and slightly smaller */
-    transform: translateX(-150px) translateY(300px) rotateX(-50deg) scale(0.95);
+        transform: translateX(-150px) translateY(300px) rotateX(-50deg) scale(0.95);
     }
     100%{
         opacity: 1;
@@ -461,9 +435,20 @@ body {
     transform: translateY(-5px) scaleY(1.07);
     box-shadow: 3px 3px 20px var(--accent); 
 }
-.tour-link{color: #fff;font-size: 14px; margin-bottom: 5px; text-decoration:none ;}
-.tour-info h3 { font-size: 14px; margin-bottom: 5px; }
-.tour-info p { font-size: 11px; color: #9c9b9b; }
+.tour-link{
+    color: #fff;
+    font-size: 14px; 
+    margin-bottom: 5px; 
+    text-decoration:none;
+}
+.tour-info h3 { 
+    font-size: 14px; 
+    margin-bottom: 5px; 
+}
+.tour-info p { 
+    font-size: 11px; 
+    color: #9c9b9b; 
+}
 
 /* --- DISCOVER SECTION --- */
 .discover-section {
@@ -474,7 +459,6 @@ body {
     justify-content: center;
     align-items: center;
     position: relative;
-    /* Premium Faded Overlay: Darker on left for text, lighter on right for image */
     background: linear-gradient(to bottom,rgba(0,0,0,1)0%,rgba(0,0,0,0.75)20%,rgba(0,0,0,0.5)50%,rgba(0,0,0,0.75)80%, rgba(0,0,0,1)100%), 
                 url('video_back.avif');
     background-size: cover;
@@ -486,7 +470,6 @@ body {
     max-width: 1300px;
     width: 90%;
     display: flex;
-    align-items: flex-end; /* Matches bottom-alignment of image */
     gap: 60px;
 }
 
@@ -500,7 +483,7 @@ body {
     font-family: 'Montserrat', sans-serif;
     font-size: clamp(32px, 4vw, 52px);
     font-weight: 700;
-    color: #00e0d0; /* Cyan accent */
+    color: var(--accent); 
     line-height: 1.1;
     margin-bottom: 40px;
     animation: slideindiscover 2s 1s 1 ease-in backwards;
@@ -543,7 +526,8 @@ body {
 }
 
 .play-icon-triangle {
-    width: 0; height: 0;
+    width: 0; 
+    height: 0;
     border-top: 7px solid transparent;
     border-bottom: 7px solid transparent;
     border-left: 11px solid #ffffff;
@@ -600,7 +584,7 @@ body {
     margin-bottom: 10px;
 }
 
-.discover-quote-box cite {
+.discover-quote-box span {
     font-size: 11px;
     color: #777;
     text-transform: uppercase;
@@ -625,7 +609,7 @@ body {
     height: 140px;
     border-radius: 12px;
     overflow: hidden;
-    background: #000;
+    background: var(--bg-black);
     box-shadow: 0 15px 45px 5px rgba(0, 0, 0, 1);
     transition: all 0.3s ease-in-out;
     outline: none;
@@ -635,7 +619,7 @@ body {
 @keyframes popin {
     0% {
         opacity: 0;
-        transform: scale(0.3) translateY(-500px) translateX(-80px); /* Start at 0.3 so it doesn't feel like it's coming from infinity */
+        transform: scale(0.3) translateY(-500px) translateX(-80px);
         box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
     }
     40% {
@@ -646,6 +630,7 @@ body {
         transform: translateY(-100px) translateX(-80px);
     }
     90%{
+        opacity: 0.7;
         transform: translateY(0) translateX(0);
     }
     /* The cubic-bezier handles the "bounce" at 100% automatically */
@@ -672,7 +657,6 @@ body {
 .v-c3-r2 { grid-column: 3; grid-row: 2; animation-delay: 6.3s;} /* Right: Mid video */
 .v-c3-r3 { grid-column: 3; grid-row: 3; animation-delay: 6.2s;} /* Right: Bottom video */
 
-/* Subtle Hover Effect */
 .video-item:hover {
     transform: scale(1.02);
     box-shadow: 3px 3px 20px 4px rgba(0, 0, 0, 0.9);
@@ -683,14 +667,10 @@ body {
     opacity: 0.5;
     transform: scale(1.02);
 }
-/* DIVIDERS & FOOTER */
-.line-divider { height: 1px; background: rgba(255,255,255,0.1); margin: 0 var(--pad); }
-
 
 /* footer */
 .footer-answer-box{
     display:flex;
-    /* gap:100px; */
     justify-content: space-around;
     padding: 50px;
     margin:50px;
@@ -775,7 +755,7 @@ body {
     filter: blur(12px);
     opacity: 0;
     transform: scale(1.1);
-     text-shadow:  2px 0px rgba(0, 0, 0, 0.3),  /* Depth */
+    text-shadow:  2px 0px rgba(0, 0, 0, 0.3),  /* Depth */
         0px 0px 10px rgba(0, 224, 208, 0.4), /* Soft Inner Glow */
         0px 0px 30px rgba(0, 224, 208, 0.2); /* Wide Outer Aura */
     
