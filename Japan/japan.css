@@ -468,6 +468,17 @@ background-color: rgba(244, 242, 242, 0);backdrop-filter: blur(0px);
     background-color: var(--bg-black);
 }
 
+@keyframes highlightReveal {
+    from {
+        opacity: 0;
+        transform: translateY(80px) scale(0.95) rotateX(10deg);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotateX(0deg);
+    }
+}
+
 .highlight-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* 4 columns on desktop */
@@ -475,6 +486,7 @@ background-color: rgba(244, 242, 242, 0);backdrop-filter: blur(0px);
     padding: 2% 8%;
     max-width: 1500px;
     margin: 0 auto;
+    overflow: hidden;
 }
 
 .highlight-box {
@@ -484,8 +496,12 @@ background-color: rgba(244, 242, 242, 0);backdrop-filter: blur(0px);
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     text-align: center;
     cursor: pointer;
+    animation: highlightReveal 1s ease backwards;
 }
-
+.highlight-box:nth-child(1) { animation-delay: 1.2s; }
+.highlight-box:nth-child(2) { animation-delay: 1.4s; }
+.highlight-box:nth-child(3) { animation-delay: 1.6s; }
+.highlight-box:nth-child(4) { animation-delay: 1.8s; }
 .highlight-box .img-wrapper {
     width: 100%;
     height: 320px;
@@ -806,8 +822,40 @@ background-color: rgba(244, 242, 242, 0);backdrop-filter: blur(0px);
     gap: 60px;
     max-width: 1300px;
     margin: 0 auto;
+    overflow: hidden;
+}
+@keyframes slideLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-80px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
+@keyframes slideRight {
+    from {
+        opacity: 0;
+        transform: translateX(80px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeZoom {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
 /* Make side images tall and thin (Premium Look) */
 .phil-img.side {
     flex: 1;
@@ -828,8 +876,18 @@ background-color: rgba(244, 242, 242, 0);backdrop-filter: blur(0px);
 .phil-text {
     flex: 1.8;
     text-align: center;
+    animation: fadeZoom 2s ease backwards;
+    animation-delay: 0.5s;
+}
+.phil-img.side:first-child {
+    /* opacity: 0; */
+    animation: slideLeft 2s ease forwards;
 }
 
+.phil-img.side:last-child {
+    /* opacity: 0; */
+    animation: slideRight 2s ease forwards;
+}
 .sub-label {
     display: block;
     color: var(--tokyo-red);
@@ -897,20 +955,11 @@ background-color: rgba(244, 242, 242, 0);backdrop-filter: blur(0px);
 }
 .firstslide{
     display: inline-block;
-    animation:slideright 2s 1s 1 ease backwards;
 }
 .secondslide{
     display: inline-block;
-    animation:slideright 2s 3s 1 ease backwards;
 }
-@keyframes slideright{
-    0%{
-        opacity: 0;
-    }
-    100%{
-        opacity:1;
-    }
-}
+
 .cta-section {
     height: 100vh;
     display: flex;
@@ -939,7 +988,6 @@ background-color: rgba(244, 242, 242, 0);backdrop-filter: blur(0px);
     font-weight: 100;
     font-size: 1rem;
     letter-spacing: 1px;
-    animation:slideright 1s 4s 1 ease backwards;
 }
 .glass-form-container input, .glass-form-container textarea {
     width: 100%;
@@ -952,7 +1000,6 @@ background-color: rgba(244, 242, 242, 0);backdrop-filter: blur(0px);
     padding: 7px 0;
     margin: 10px 0;
     outline: none;
-    animation:slideright 1s 4s 1 ease backwards;
 }
 
 .glass-form-container input:focus,textarea:focus{
@@ -1179,6 +1226,17 @@ background-color: rgba(244, 242, 242, 0);backdrop-filter: blur(0px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+@keyframes statsFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .stats-container {
     max-width: 1300px;
     margin: 0 auto;
@@ -1186,14 +1244,19 @@ background-color: rgba(244, 242, 242, 0);backdrop-filter: blur(0px);
     justify-content: space-between;
     align-items: flex-start; /* Aligned to top for varying text lengths */
     gap: 20px;
+    animation: statsFadeUp 1s ease backwards;
 }
 
 .stat-item {
     flex: 1;
     text-align: center;
     padding: 0 15px;
+    animation: statsFadeUp 1s ease backwards;
 }
-
+.stat-item:nth-child(1) { animation-delay: 1.5s; }
+.stat-item:nth-child(3) { animation-delay: 1.7s; }
+.stat-item:nth-child(5) { animation-delay: 1.9s; }
+.stat-item:nth-child(7) { animation-delay: 2.1s; }
 .stat-number {
     font-size: 3.8rem;
     font-weight: 800;
@@ -1351,6 +1414,7 @@ background-color: rgba(244, 242, 242, 0);backdrop-filter: blur(0px);
     letter-spacing: 5px;
     color: #555;
     margin-bottom: 10px;
+    animation: revealText 1s 1.5s ease-out backwards;
 }
 
 .main-quote {
@@ -1358,6 +1422,7 @@ background-color: rgba(244, 242, 242, 0);backdrop-filter: blur(0px);
     font-weight: 300;
     letter-spacing: 10px;
     color: #fff;
+    animation: revealText 1.5s ease-out forwards;
 }
 
 .gold-highlight {
@@ -1374,8 +1439,40 @@ background-color: rgba(244, 242, 242, 0);backdrop-filter: blur(0px);
     max-width: 1350px;
     margin: 0 auto;
     gap: 12px;
+    overflow: hidden;
+}
+@keyframes centerReveal {
+    from {
+        opacity: 0;
+        transform: scale(0.8) translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1.13) translateY(0);
+    }
 }
 
+@keyframes sideLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-80px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+@keyframes sideRight {
+    from {
+        opacity: 0;
+        transform: translateX(80px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
 .static-card {
     position: relative;
     border-radius: 12px;
@@ -1401,7 +1498,25 @@ background-color: rgba(244, 242, 242, 0);backdrop-filter: blur(0px);
     transform: scaleX(1.13) scaleY(1.1);
     filter: brightness(1) grayscale(0%);
     z-index: 3;
+    animation: centerReveal 1s ease backwards;
 }
+/* Left side cards */
+.static-card:nth-child(1),
+.static-card:nth-child(2) {
+    animation: sideLeft 1s ease backwards;
+}
+/* Right side cards */
+.static-card:nth-child(4),
+.static-card:nth-child(5) {
+    animation: sideRight 1s ease backwards;
+}
+.static-card:nth-child(1) { animation-delay: 1.4s; }
+.static-card:nth-child(2) { animation-delay: 1.6s; }
+
+.static-card.active { animation-delay: 1.2s; }
+
+.static-card:nth-child(4) { animation-delay: 1.6s; }
+.static-card:nth-child(5) { animation-delay: 1.8s; }
 
 /* THE EXACT LOOK: Forces the center card to grow and light up */
 /* .static-card.active {
