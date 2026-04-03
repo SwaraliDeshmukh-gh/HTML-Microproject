@@ -241,8 +241,8 @@ background-color: rgba(244, 242, 242, 0);backdrop-filter: blur(0px);
 .h-card {
     position: relative;
     overflow: hidden;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 1px solid rgba(206, 66, 87,0.3)/* Subtle border */
+    transition: all 0.5s ease-in-out;
+    border: 1px solid rgba(206, 120, 66, 0.2)/* Subtle border */
 }
 
 .h-card span {
@@ -268,8 +268,8 @@ background-color: rgba(244, 242, 242, 0);backdrop-filter: blur(0px);
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 110%;
+    height: 110%;
     background: linear-gradient(transparent, rgba(0,0,0,0.8));
     opacity: 0;
     transition: opacity 0.5s ease;
@@ -459,6 +459,78 @@ background-color: rgba(244, 242, 242, 0);backdrop-filter: blur(0px);
     to {
         opacity: 1;
         letter-spacing: 5px;
+    }
+}
+
+/* --- Experience Highlights Section --- */
+.experience-highlights {
+    padding-bottom: 100px;
+    background-color: var(--bg-black);
+}
+
+.highlight-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns on desktop */
+    gap: 30px;
+    padding: 2% 8%;
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+.highlight-box {
+    background: #0d0d0d;
+    border: 1px solid rgba(255, 77, 0, 0.3); /* Uses your Tokyo Red as a subtle border */
+    padding: 12px;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    text-align: center;
+    cursor: pointer;
+}
+
+.highlight-box .img-wrapper {
+    width: 100%;
+    height: 320px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.highlight-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(0.3) brightness(0.8);
+    transition: all 0.6s ease;
+}
+
+.highlight-box p {
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-white);
+    margin-bottom: 5px;
+}
+
+/* --- THE WOW HOVER EFFECTS --- */
+.highlight-box:hover {
+    border-color: #ffb400; /* Changes to Gold on hover like your reference image */
+    transform: translateY(-15px);
+    box-shadow: 0 10px 30px rgba(255, 180, 0, 0.2);
+}
+
+.highlight-box:hover img {
+    filter: grayscale(0) brightness(1.1);
+    transform: scale(1.1);
+}
+
+/* Responsive adjustment for Mobile */
+@media (max-width: 900px) {
+    .highlight-container {
+        grid-template-columns: repeat(2, 1fr); /* 2x2 grid on tablets */
+    }
+}
+
+@media (max-width: 600px) {
+    .highlight-container {
+        grid-template-columns: 1fr; /* Stacks vertically on phones */
     }
 }
 
@@ -696,11 +768,11 @@ background-color: rgba(244, 242, 242, 0);backdrop-filter: blur(0px);
 }
 
  .inc-card:hover {
-    background-color: rgba(254, 252, 252, 0.06);
+    background-color: rgba(246, 141, 4, 0.03);
     backdrop-filter: blur(5px);
-    border-color: rgba(255, 255, 255, 0.5); /* Brightens the border */
+    border-color: rgba(246, 141, 4, 1); /* Brightens the border */
     transform: translateY(-8px) scale(1.02); /* Lifts and grows slightly */
-    box-shadow: 0 15px 30px rgba(101, 101, 101, 0.4);
+    box-shadow: 0 15px 30px rgba(251, 153, 25, 0.4);
 }
 .inc-card:hover p{color:rgb(226, 223, 223);}
 .inc-card h3{
@@ -710,9 +782,108 @@ background-color: rgba(244, 242, 242, 0);backdrop-filter: blur(0px);
 .inc-card p{
     color:rgb(172, 169, 169);
 }
-.inc-card .icon { font-size: 2rem; margin-bottom: 15px; display: inline-block;transition: transform 0.4s ease;}
+.inc-card .icon { 
+    font-size: 2rem;
+    margin-bottom: 15px; 
+    display: inline-block;
+    transition: transform 0.4s ease;
+    filter: grayscale(0.4);
+    }
 .inc-card:hover .icon {
-    transform:scale(1.1) rotate(-360deg); /* Pops out and tilts */
+    transform:scale(1.1) rotate(30deg); /* Pops out and tilts */
+      filter: grayscale(0);
+}
+
+.philosophy-section {
+    padding: 90px 8%;
+    background: var(--bg-black);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);/* Subtle separation */
+}
+
+.phil-container {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+/* Make side images tall and thin (Premium Look) */
+.phil-img.side {
+    flex: 1;
+    aspect-ratio: 2 / 3; 
+    overflow: hidden;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 77, 0, 0.2); /* Subtle Tokyo Red border */
+}
+
+.phil-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(0.2) brightness(0.8);
+    transition: transform 1s ease;
+}
+
+.phil-text {
+    flex: 1.8;
+    text-align: center;
+}
+
+.sub-label {
+    display: block;
+    color: var(--tokyo-red);
+    letter-spacing: 5px;
+    font-size: 0.75rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.phil-text h2 {
+    font-size: 2.8rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+    color: #fff;
+}
+
+.phil-text p {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    max-width: 500px;
+    margin: 0 auto 30px;
+}
+
+.phil-line {
+    width: 50px;
+    height: 1px;
+    background: var(--tokyo-red);
+    margin: 30px auto;
+}
+
+.quote {
+    font-style: italic;
+    font-family: 'Cambria', serif;
+    opacity: 0.8;
+}
+
+/* Hover Effect */
+.phil-img:hover img {
+    transform: scale(1.1);
+    filter: grayscale(0) brightness(1);
+}
+
+/* Responsive Fix */
+@media (max-width: 900px) {
+    .phil-container {
+        flex-direction: column;
+        gap: 40px;
+    }
+    .phil-img.side {
+        width: 80%;
+        aspect-ratio: 16 / 9; /* Landscape on mobile */
+    }
 }
 
 /* --- CTA Section --- */
@@ -903,10 +1074,12 @@ background-color: rgba(244, 242, 242, 0);backdrop-filter: blur(0px);
     overflow: hidden;
     border-radius: 20px;
     animation: fade 4s 2s 1 ease-in-out backwards;
+    transition: all 0.1s linear;
 }
 .css-slider:hover{
-    border:2px solid #ff7f51;
-    box-shadow: 0 0 50px 1px #ff7f51;
+    border:0px solid #ffa200;
+    box-shadow: 0 0 40px 1px #ffa200;
+    transform: scale(1.003);
 }
 @keyframes fade{
     0%{
@@ -995,4 +1168,321 @@ background-color: rgba(244, 242, 242, 0);backdrop-filter: blur(0px);
     background: #ff4d00;
     width: 30px;
     border-radius: 10px;
+}
+
+/* --- Refined Tour Stats Bar --- */
+.tour-stats-bar {
+    padding: 90px 8%;
+    /* Use 'transparent' or your exact site background variable here */
+    background: transparent; 
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.stats-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Aligned to top for varying text lengths */
+    gap: 20px;
+}
+
+.stat-item {
+    flex: 1;
+    text-align: center;
+    padding: 0 15px;
+}
+
+.stat-number {
+    font-size: 3.8rem;
+    font-weight: 800;
+    /* Clean gold color without heavy gradients for better 'flow' */
+    color: #ffa200; 
+    line-height: 1;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.stat-label {
+    font-size: 0.7rem;
+    color: #fff;
+    letter-spacing: 4px;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.stat-desc {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5); /* Muted white for secondary info */
+    line-height: 1.6;
+    max-width: 200px;
+    margin: 0 auto;
+}
+
+/* Subtle Vertical Separator */
+.stat-sep {
+    width: 1px;
+    height: 100px;
+    background: rgba(255, 204, 0, 0.1);
+    align-self: center;
+}
+
+/* Hover Effect */
+.stat-item:hover .stat-number {
+    transform: translateY(-5px);
+    text-shadow: 0 10px 20px rgba(255, 204, 0, 0.4);
+    transition: all 0.3s ease;
+}
+
+/* Responsive Grid for Tablets/Phones */
+@media (max-width: 1024px) {
+    .stats-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px 20px;
+    }
+    .stat-sep {
+        display: none;
+    }
+    .stat-number {
+        font-size: 3rem;
+    }
+}
+.japan-accordion-section {
+    padding: 100px 5%;
+    background: #000; /* Dark background as per your screenshots */
+    text-align: center;
+}
+
+.accordion-header {
+    margin-bottom: 50px;
+}
+
+.sub-text {
+    font-size: 0.7rem;
+    letter-spacing: 5px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.main-title {
+    font-size: 2.5rem;
+    font-weight: 300;
+    letter-spacing: 8px;
+    color: #fff;
+}
+
+.gold-text {
+    color: #ffcc00; /* Your gold accent */
+    font-weight: 700;
+}
+
+/* The Layout Engine */
+.accordion-container {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    height: 500px; /* Fixed height for the gallery */
+    margin: 0 auto;
+    gap: 15px;
+}
+
+.acc-card {
+    flex: 1; /* Side cards are narrow */
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+    filter: brightness(0.4) grayscale(1); /* Dark and muted side images */
+}
+
+/* The Active "Victoria" Style Expansion */
+.acc-card.active {
+    flex: 4; /* Grows much wider than sides */
+    filter: brightness(1) grayscale(0); /* Pops with color and light */
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+}
+
+.acc-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.acc-label {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    font-size: 1.2rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: 0;
+    transition: 0.4s;
+    white-space: nowrap;
+}
+
+.acc-card.active .acc-label {
+    opacity: 1;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .accordion-container { height: 350px; gap: 8px; }
+    .main-title { font-size: 1.5rem; letter-spacing: 3px; }
+    .acc-card.active { flex: 6; }
+}
+.static-japan-gallery {
+    padding: 100px 5%;
+    background: #080808;
+    text-align: center;
+}
+
+.gallery-header {
+    margin-bottom: 60px;
+}
+
+.sub-quote {
+    font-size: 0.7rem;
+    letter-spacing: 5px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.main-quote {
+    font-size: 2.8rem;
+    font-weight: 300;
+    letter-spacing: 10px;
+    color: #fff;
+}
+
+.gold-highlight {
+    color: #ffa200;
+    font-weight: 800;
+}
+
+/* The Layout Engine */
+.static-container {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Aligns items to center of the row */
+    height: 550px; /* Overall height of the section */
+    max-width: 1350px;
+    margin: 0 auto;
+    gap: 12px;
+}
+
+.static-card {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    /* This makes them all look like the narrow side-cards by default */
+    flex: 1; 
+    height: 400px; 
+    transition: none; /* No movement as requested */
+    filter: brightness(0.8) grayscale(20%);
+    
+}
+.static-card:hover{
+    transform: scaleX(1.13) scaleY(1.1);
+    filter: brightness(1) grayscale(0%);
+    z-index: 3;
+}
+.static-container:has(.side:hover) .active {
+    transform: scale(1);
+    filter: brightness(0.8) grayscale(20%);
+    z-index: 1;
+}
+.active{
+    transform: scaleX(1.13) scaleY(1.1);
+    filter: brightness(1) grayscale(0%);
+    z-index: 3;
+}
+
+/* THE EXACT LOOK: Forces the center card to grow and light up */
+/* .static-card.active {
+    /* flex: 1.2;  Makes it 4x wider than the sides */
+    /* height: 450px; Makes it taller than the sides */
+   /* filter: brightness(1) grayscale(0%);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.7);
+    transform: scaleX(1.2) scaleY(1.1);
+    z-index: 3;
+} */
+
+.static-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.location-name {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    font-size: 1.2rem;
+    letter-spacing: 3px;
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+/* Mobile: Stack them or hide extra sides to keep the look */
+@media (max-width: 800px) {
+    .static-container { height: auto; flex-direction: column; }
+    .static-card { width: 100%; height: 250px !important; flex: none !important; }
+}
+.final-cta-section {
+    position: relative;
+    padding: 150px 5%;
+    text-align: center;
+    /* Replace with your Torii gate sunset image */
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6)), 
+                url('https://images4.alphacoders.com/598/598503.jpg'); 
+    background-size: cover;
+    background-position: center;
+    /* background-attachment: fixed; Creates a high-end parallax effect */
+    color: #fff;
+}
+
+.cta-title {
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    font-weight: 300;
+    letter-spacing: 10px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.cta-subtitle {
+    font-size: 1.1rem;
+    letter-spacing: 3px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 40px;
+    font-weight: 300;
+}
+
+/* THE BUTTON: Clean, modern, and high-contrast */
+.cta-button {
+    display: inline-block;
+    padding: 18px 45px;
+    background-color: var(--tokyo-red); /* Vibrant Japanese Red */
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(255, 59, 59, 0.3);
+}
+
+.cta-button:hover {
+    background-color: #fff;
+    color: var(--tokyo-red);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(255, 255, 255, 0.2);
 }
