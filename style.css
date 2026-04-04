@@ -824,7 +824,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #000;
+    background: var(--bg-black);
 }
 
 /* Cinematic Background with Slow Zoom */
@@ -863,7 +863,7 @@ body {
 }
 
 .footer-banner-header {
-    color: var(--accent, #00e0d0); /* Uses your teal or a fallback */
+    color: var(--accent);/* Uses your teal or a fallback */
     font-size: clamp(1.5rem, 4vw, 2.5rem); /* Responsive font size */
     font-weight: 700;
     text-transform: uppercase;
@@ -897,13 +897,12 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(10px);
     overflow: hidden; /* Important for the shimmer */
-    
     transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 /* The "Flash" Light Sweep Animation */
 .footer-banner-btn::after {
-    content: "";
+    content: '';
     position: absolute;
     top: -50%;
     left: -60%;
@@ -960,7 +959,7 @@ body {
 }
 
 .footer-label {
-    color: #00e0d0;
+    color: var(--accent);
     font-size: 1.2rem;
     letter-spacing: 4px;
     text-transform: uppercase;
@@ -980,8 +979,8 @@ body {
 }
 
 .contact-row i {
-    color: #00e0d0;
-    animation: spin 2s 0s ease infinite backwards;
+    color: var(--accent);
+    animation: spin 2s ease infinite backwards;
 }
 @keyframes spin{
     0%{
@@ -1061,10 +1060,10 @@ body {
 .flash-btn {
     width: 100%;
     padding: 15px;
-    background: #00e0d0;
+    background: var(--accent);
     border: none;
     border-radius: 50px;
-    color: #000;
+    color: var(--bg-black);
     font-weight: 800;
     letter-spacing: 2px;
     cursor: pointer;
@@ -1091,7 +1090,7 @@ body {
 }
 
 .social-icons i:hover {
-    color: #00e0d0;
+    color: var(--accent);
     transform: translateY(-5px) scale(1.07);
 }
 
